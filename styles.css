@@ -45,6 +45,13 @@ body {
   font-size: 0.98rem;
 }
 
+.top-links {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .admin-link {
   display: inline-block;
   background: var(--primary-soft);
@@ -82,7 +89,9 @@ body {
 .admin-form input,
 .admin-form textarea,
 .admin-form button,
-.danger-btn {
+.danger-btn,
+.chat-form textarea,
+.chat-form button {
   font-family: inherit;
   font-size: 1rem;
 }
@@ -90,7 +99,8 @@ body {
 .filters select,
 .filters input,
 .admin-form input,
-.admin-form textarea {
+.admin-form textarea,
+.chat-form textarea {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 10px;
@@ -160,7 +170,8 @@ body {
 }
 
 .details-link,
-.admin-item a {
+.admin-item a,
+.chat-refs a {
   width: fit-content;
   color: var(--primary);
   text-decoration: none;
@@ -199,7 +210,8 @@ body {
   gap: 10px;
 }
 
-.admin-form button {
+.admin-form button,
+.chat-form button {
   border: 0;
   border-radius: 10px;
   padding: 10px;
@@ -303,6 +315,81 @@ body {
   font-size: 1.04rem;
   border-top: 1px solid var(--border);
   padding-top: 10px;
+}
+
+.chatbot-card {
+  display: grid;
+  gap: 10px;
+}
+
+.chat-messages {
+  display: grid;
+  gap: 10px;
+  max-height: 65vh;
+  overflow: auto;
+  padding-left: 2px;
+}
+
+.chat-message {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+}
+
+.chat-message p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.chat-user {
+  border-color: #d1fae5;
+  background: #f0fdf4;
+}
+
+.chat-bot {
+  border-color: #dbeafe;
+  background: #f8fbff;
+}
+
+.chat-form {
+  display: grid;
+  gap: 8px;
+}
+
+.chat-label {
+  font-size: 0.92rem;
+}
+
+.chat-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.chat-refs {
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+.chat-refs h3 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+
+.chat-refs ul {
+  margin: 0;
+  padding-right: 16px;
+}
+
+.chat-refs li {
+  margin-bottom: 8px;
+}
+
+.chat-refs li p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 @media (min-width: 640px) {
