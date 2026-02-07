@@ -19,6 +19,8 @@
 
     <section class="card admin-panel">
       <form id="lecture-form" class="admin-form">
+        <input type="hidden" name="editId" />
+
         <label>
           دسته اصلی (مثال: اسرار نماز)
           <input type="text" name="collection" required />
@@ -64,7 +66,10 @@
           <textarea name="text" rows="10" required></textarea>
         </label>
 
-        <button type="submit">ثبت سخنرانی</button>
+        <div class="admin-actions">
+          <button id="submit-btn" type="submit">ثبت سخنرانی</button>
+          <button id="cancel-edit-btn" type="button" class="secondary-btn" hidden>لغو ویرایش</button>
+        </div>
         <p id="form-message" class="form-message" aria-live="polite"></p>
       </form>
     </section>

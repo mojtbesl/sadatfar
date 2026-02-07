@@ -115,6 +115,29 @@ function getLectureById(id) {
   return lectures.find((lecture) => lecture.id === id) || null;
 }
 
+function updateLecture(id, updates) {
+  const lectures = getLectures();
+  const index = lectures.findIndex((lecture) => lecture.id === id);
+
+  if (index < 0) {
+    return null;
+  }
+
+  const current = lectures[index];
+  const next = normalizeLecture(
+    {
+      ...current,
+      ...updates,
+      id: current.id
+    },
+    index
+  );
+
+  lectures[index] = next;
+  writeLectures(lectures);
+  return next;
+}
+
 function removeLecture(id) {
   const lectures = getLectures();
   const filtered = lectures.filter((lecture) => lecture.id !== id);
@@ -126,5 +149,6 @@ window.lectureStore = {
   getLectures,
   addLecture,
   getLectureById,
+  updateLecture,
   removeLecture
 };

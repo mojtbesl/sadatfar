@@ -1,6 +1,8 @@
 const form = document.getElementById("lecture-form");
 const message = document.getElementById("form-message");
 const listRoot = document.getElementById("admin-lecture-list");
+const submitBtn = document.getElementById("submit-btn");
+const cancelEditBtn = document.getElementById("cancel-edit-btn");
 
 function isValidUrl(urlString) {
   try {
@@ -9,6 +11,36 @@ function isValidUrl(urlString) {
   } catch {
     return false;
   }
+}
+
+function setFormMode(mode) {
+  const isEdit = mode === "edit";
+  submitBtn.textContent = isEdit ? "ذخیره تغییرات" : "ثبت سخنرانی";
+  cancelEditBtn.hidden = !isEdit;
+}
+
+function clearForm() {
+  form.reset();
+  form.elements.editId.value = "";
+  form.elements.duration.value = "30 دقیقه";
+  setFormMode("create");
+}
+
+function fillFormForEdit(lecture) {
+  form.elements.editId.value = lecture.id;
+  form.elements.collection.value = lecture.collection;
+  form.elements.topic.value = lecture.topic;
+  form.elements.sessionNumber.value = lecture.sessionNumber;
+  form.elements.title.value = lecture.title;
+  form.elements.date.value = lecture.date || "";
+  form.elements.location.value = lecture.location || "";
+  form.elements.duration.value = lecture.duration || "30 دقیقه";
+  form.elements.audio.value = lecture.audio || "";
+  form.elements.text.value = lecture.text || "";
+
+  setFormMode("edit");
+  message.textContent = "در حال ویرایش جلسه";
+  form.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderAdminList() {
@@ -57,6 +89,18 @@ function renderAdminList() {
     pageLink.textContent = "صفحه جلسه";
     linksRow.appendChild(pageLink);
 
+    const actions = document.createElement("div");
+    actions.className = "admin-item-actions";
+
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "secondary-btn";
+    editBtn.textContent = "ویرایش";
+
+    editBtn.addEventListener("click", () => {
+      fillFormForEdit(lecture);
+    });
+
     const deleteBtn = document.createElement("button");
     deleteBtn.type = "button";
     deleteBtn.className = "danger-btn";
@@ -64,24 +108,36 @@ function renderAdminList() {
 
     deleteBtn.addEventListener("click", () => {
       window.lectureStore.removeLecture(lecture.id);
+      if (form.elements.editId.value === lecture.id) {
+        clearForm();
+      }
       renderAdminList();
     });
+
+    actions.appendChild(editBtn);
+    actions.appendChild(deleteBtn);
 
     wrapper.appendChild(title);
     wrapper.appendChild(meta);
     wrapper.appendChild(details);
     wrapper.appendChild(linksRow);
-    wrapper.appendChild(deleteBtn);
+    wrapper.appendChild(actions);
 
     listRoot.appendChild(wrapper);
   });
 }
+
+cancelEditBtn.addEventListener("click", () => {
+  message.textContent = "";
+  clearForm();
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   message.textContent = "";
 
   const formData = new FormData(form);
+  const editId = String(formData.get("editId") || "").trim();
   const collection = String(formData.get("collection") || "").trim();
   const topic = String(formData.get("topic") || "").trim();
   const sessionNumber = Number(formData.get("sessionNumber") || 0);
@@ -102,7 +158,7 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  window.lectureStore.addLecture({
+  const payload = {
     collection,
     topic,
     sessionNumber,
@@ -112,11 +168,24 @@ form.addEventListener("submit", (event) => {
     duration,
     audio,
     text
-  });
+  };
 
-  form.reset();
-  message.textContent = "جلسه با موفقیت ثبت شد.";
+  if (editId) {
+    const updated = window.lectureStore.updateLecture(editId, payload);
+    if (!updated) {
+      message.textContent = "جلسه برای ویرایش پیدا نشد.";
+      return;
+    }
+
+    message.textContent = "جلسه با موفقیت ویرایش شد.";
+  } else {
+    window.lectureStore.addLecture(payload);
+    message.textContent = "جلسه با موفقیت ثبت شد.";
+  }
+
+  clearForm();
   renderAdminList();
 });
 
+setFormMode("create");
 renderAdminList();
