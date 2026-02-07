@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>پنل ادمین | سخنرانی های حاج آقای سعادتفر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>پنل ادمین</h1>
+      <p>ثبت جلسه جدید با دسته بندی و لینک صوت</p>
+      <a class="admin-link" href="index.html">بازگشت به سایت</a>
+    </header>
+
+    <section class="card admin-panel">
+      <form id="lecture-form" class="admin-form">
+        <label>
+          دسته اصلی (مثال: اسرار نماز)
+          <input type="text" name="collection" required />
+        </label>
+
+        <label>
+          موضوع (مثال: سر طهارت)
+          <input type="text" name="topic" required />
+        </label>
+
+        <label>
+          شماره جلسه
+          <input type="number" name="sessionNumber" min="1" required />
+        </label>
+
+        <label>
+          عنوان سخنرانی
+          <input type="text" name="title" required />
+        </label>
+
+        <label>
+          تاریخ
+          <input type="text" name="date" placeholder="مثال: 1404/11/15" />
+        </label>
+
+        <label>
+          مکان
+          <input type="text" name="location" />
+        </label>
+
+        <label>
+          زمان جلسه
+          <input type="text" name="duration" placeholder="مثال: 30 دقیقه" value="30 دقیقه" required />
+        </label>
+
+        <label>
+          لینک فایل صوتی (از سایت آقای سعادتفر)
+          <input type="url" name="audio" placeholder="https://...mp3" />
+        </label>
+
+        <label>
+          متن کامل سخنرانی
+          <textarea name="text" rows="10" required></textarea>
+        </label>
+
+        <button type="submit">ثبت سخنرانی</button>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="card admin-list-card">
+      <h2 class="admin-list-title">جلسات ثبت شده</h2>
+      <div id="admin-lecture-list" class="admin-list"></div>
+    </section>
+  </main>
+
+  <script src="asma-seed.js"></script>
+  <script src="data-store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

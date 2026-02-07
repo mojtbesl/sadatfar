@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سخنرانی های حاج آقای سعادتفر</title>
+  <meta name="description" content="آرشیو سخنرانی های حاج آقای سعادتفر همراه با متن و فایل صوتی" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>سخنرانی های حاج آقای سعادتفر</h1>
+      <p>فهرست جلسات با دسته بندی موضوعی</p>
+      <a class="admin-link" href="admin.html">پنل ادمین</a>
+    </header>
+
+    <section class="card filters" aria-label="فیلتر سخنرانی ها">
+      <label>
+        دسته اصلی
+        <select id="collection-filter"></select>
+      </label>
+
+      <label>
+        موضوع
+        <select id="topic-filter"></select>
+      </label>
+
+      <label>
+        جستجو
+        <input id="search-input" type="search" placeholder="عنوان یا متن..." />
+      </label>
+    </section>
+
+    <p id="results-info" class="results-info"></p>
+    <section id="lectures" class="lectures" aria-label="فهرست سخنرانی ها"></section>
+
+    <div class="pagination">
+      <button id="prev-page" type="button">قبلی</button>
+      <span id="page-info"></span>
+      <button id="next-page" type="button">بعدی</button>
+    </div>
+  </main>
+
+  <template id="lecture-card-template">
+    <article class="card">
+      <div class="chip-row">
+        <span class="chip chip-primary card-collection"></span>
+        <span class="chip card-topic"></span>
+      </div>
+
+      <h2 class="card-title"></h2>
+      <p class="card-meta"></p>
+      <audio class="card-audio" controls preload="none"></audio>
+      <p class="audio-missing" hidden>لینک صوت هنوز ثبت نشده است.</p>
+      <p class="card-text-preview"></p>
+      <a class="details-link" href="#">مشاهده صفحه کامل جلسه</a>
+    </article>
+  </template>
+
+  <script src="asma-seed.js"></script>
+  <script src="data-store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
