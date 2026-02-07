@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>چت بات سخنرانی ها | حاج آقای سعادتفر</title>
-  <meta name="description" content="پرسش و پاسخ هوشمند بر اساس متن سخنرانی های حاج آقای سعادتفر" />
+  <title>چت بات | غیرفعال</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -12,62 +11,11 @@
 </head>
 <body>
   <main class="container">
-    <header class="header">
-      <h1>چت بات هوشمند سخنرانی ها</h1>
-      <p>مکالمه هوشمند با رفرنس مستقیم به جلسات</p>
-      <div class="top-links">
-        <a class="admin-link" href="index.html">فهرست سخنرانی ها</a>
-        <a class="admin-link" href="admin.html">پنل ادمین</a>
-      </div>
-    </header>
-
-    <section class="card chat-settings">
-      <h2>تنظیمات چت</h2>
-      <div class="chat-settings-grid">
-        <label>
-          حالت پاسخ
-          <select id="mode-select">
-            <option value="ai">هوشمند (LLM)</option>
-            <option value="local">محلی (بدون API)</option>
-          </select>
-        </label>
-
-        <label>
-          مدل
-          <input id="model-input" type="text" value="openai/gpt-4o-mini" />
-        </label>
-
-        <label>
-          آدرس API (OpenAI-compatible)
-          <input id="base-url-input" type="text" value="https://openrouter.ai/api/v1" />
-        </label>
-
-        <label>
-          API Key
-          <input id="api-key-input" type="password" placeholder="sk-..." />
-        </label>
-      </div>
-      <div class="chat-settings-actions">
-        <button id="save-settings-btn" type="button">ذخیره تنظیمات</button>
-        <button id="clear-chat-btn" type="button" class="secondary-btn">پاک کردن گفتگو</button>
-      </div>
-      <p id="settings-status" class="settings-status"></p>
-      <p class="settings-note">برای GitHub Pages، بهترین راه استفاده از یک API سازگار مثل OpenRouter است. کلید روی مرورگر شما ذخیره می‌شود.</p>
-    </section>
-
-    <section class="card chatbot-card">
-      <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
-
-      <form id="chat-form" class="chat-form">
-        <label for="chat-input" class="chat-label">سوال شما</label>
-        <textarea id="chat-input" rows="3" placeholder="مثلا: در جلسات اسما حسنی درباره معنای احصاء چه توضیحی داده شده؟" required></textarea>
-        <button id="send-btn" type="submit">ارسال سوال</button>
-      </form>
+    <section class="card" style="text-align:center;">
+      <h1 style="margin-top:0;">چت بات موقتا غیرفعال است</h1>
+      <p>این بخش بنا به درخواست مدیر سایت فعلا در دسترس نیست.</p>
+      <a class="admin-link" href="index.html">بازگشت به صفحه اصلی</a>
     </section>
   </main>
-
-  <script src="asma-seed.js"></script>
-  <script src="data-store.js"></script>
-  <script src="chat.js"></script>
 </body>
 </html>
