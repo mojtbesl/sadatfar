@@ -15,8 +15,11 @@ const fallbackLectures = [
   }
 ];
 
-const seedLectures = Array.isArray(window.asmaSeedLectures) && window.asmaSeedLectures.length
-  ? window.asmaSeedLectures
+const asmaSeedLectures = Array.isArray(window.asmaSeedLectures) ? window.asmaSeedLectures : [];
+const taharatSeedLectures = Array.isArray(window.taharatSeedLectures) ? window.taharatSeedLectures : [];
+
+const seedLectures = [...asmaSeedLectures, ...taharatSeedLectures].length
+  ? [...asmaSeedLectures, ...taharatSeedLectures]
   : fallbackLectures;
 
 function normalizeLecture(lecture, index) {
